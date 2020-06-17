@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HearthStone</string>
+    <string name="hearthstone">HearthStone</string>
+    <string name="api_key">7a2d05ed37mshb0c0b7505d57680p16c282jsn1e9775f4eae2</string>
+    <string name="base_url">https://omgvamp-hearthstone-v1.p.rapidapi.com</string>
+</resources>
