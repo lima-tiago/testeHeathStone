@@ -1,5 +1,6 @@
 package com.example.testeandroidhearthstone.network
 
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -12,6 +13,7 @@ object ApiClient {
     private val interceptor = SupportInterceptor()
 
     private val okHttp = OkHttpClient.Builder().addInterceptor(interceptor)
+    val gson = GsonBuilder().setLenient().create()
 
     fun getClient(): ApiInterface {
         myInterface?.let {
@@ -19,7 +21,7 @@ object ApiClient {
         }
         val retrofit = Retrofit.Builder()
             .baseUrl("https://omgvamp-hearthstone-v1.p.rapidapi.com")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(okHttp.build())
             .build()

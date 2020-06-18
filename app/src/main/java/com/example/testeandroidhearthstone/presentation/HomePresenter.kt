@@ -66,7 +66,6 @@ class HomePresenter(private val view: HomeContract.HomeView) : HomeContract.Home
             "Races"->parent.children.addAll(resultInfo.races)
             else -> { }
         }
-
         return parent
     }
 }
