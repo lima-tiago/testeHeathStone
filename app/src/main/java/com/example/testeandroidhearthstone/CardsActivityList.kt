@@ -25,18 +25,18 @@ class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
         btn_back.setOnClickListener {
             this.finish()
         }
-        mPresenter.getCards(getIncommingExtraProperty(),getIncommingExtraParam())
+        mPresenter.getCards(getIncomingExtraProperty(),getIncomingExtraParam())
     }
 
     override fun setPresenter(presenter: CardsListContract.CardsListPresenter) {
         mPresenter = presenter
     }
 
-    override fun getIncommingExtraProperty(): String {
+    override fun getIncomingExtraProperty(): String {
         return intent.getStringExtra("property")
     }
 
-    override fun getIncommingExtraParam(): String {
+    override fun getIncomingExtraParam(): String {
         return intent.getStringExtra("param")
     }
 

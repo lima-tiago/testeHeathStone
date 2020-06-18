@@ -41,5 +41,17 @@
             android:layout_height="wrap_content"
             android:paddingBottom="190dp"
             />
+
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/loading_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHearthStone"
+        android:layout_marginTop="33dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

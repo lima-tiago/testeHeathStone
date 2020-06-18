@@ -2,10 +2,9 @@ package com.example.testeandroidhearthstone
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testeandroidhearthstone.data.ParentModel
-import com.example.testeandroidhearthstone.factory.ParentDataFactory
 import com.example.testeandroidhearthstone.network.response.InfoResponse
 import com.example.testeandroidhearthstone.presentation.HomeContract
 import com.example.testeandroidhearthstone.presentation.HomePresenter
@@ -42,5 +41,13 @@ class HomeActivity : AppCompatActivity() , HomeContract.HomeView {
 
     override fun setPresenter(presenter: HomeContract.HomePresenter) {
         this.mPresenter = presenter
+    }
+
+    override fun hideLoading() {
+        loading_main.visibility = View.GONE
+    }
+
+    override fun showLoading() {
+        loading_main.visibility = View.VISIBLE
     }
 }

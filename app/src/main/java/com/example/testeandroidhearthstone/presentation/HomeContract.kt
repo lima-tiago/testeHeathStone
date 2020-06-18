@@ -7,10 +7,9 @@ interface HomeContract {
 
     interface HomeView : BaseView<HomePresenter> {
 
-//        fun setUpParentAdapter(children: List<Property>)
-////        fun setUpChildrenAdapter()
-////        fun addPropertyScroll(property: Property)
         fun setUpPropertyAdapter(resultInfo: InfoResponse)
+        fun hideLoading()
+        fun showLoading()
     }
 
     interface HomePresenter : BasePresenter {

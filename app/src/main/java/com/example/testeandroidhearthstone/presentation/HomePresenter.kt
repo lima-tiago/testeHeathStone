@@ -1,11 +1,14 @@
 package com.example.testeandroidhearthstone.presentation
 
+import android.util.Log
 import com.example.testeandroidhearthstone.data.ParentModel
 import com.example.testeandroidhearthstone.factory.ParentDataFactory
 import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.response.InfoResponse
-import retrofit2.Call
-import retrofit2.Callback
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers.io
 import retrofit2.Response
 
 class HomePresenter(private val view: HomeContract.HomeView) : HomeContract.HomePresenter {
@@ -15,21 +18,34 @@ class HomePresenter(private val view: HomeContract.HomeView) : HomeContract.Home
 //        view.setUpParentAdapter()
     }
 
+    private val TAG = "homepresenter"
+
     override fun start() {}
 
     override fun getApiInfo() {
-        val call: Call<InfoResponse> = ApiClient.getClient().getInfo()
+        view.showLoading()
+        ApiClient.getClient().getInfo()
+            .subscribeOn(io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<InfoResponse>{
+                override fun onComplete() {
+                    Log.d(TAG,"Completed")
+                }
 
-        call.enqueue(object : Callback<InfoResponse> {
-            override fun onResponse(call: Call<InfoResponse>, response: Response<InfoResponse>) {
-                val resultInfo:InfoResponse = response.body()!!
-                view.setUpPropertyAdapter(resultInfo)
-            }
+                override fun onSubscribe(d: Disposable?) {
+                    Log.d(TAG,"Subscribed")
+                }
 
-            override fun onFailure(call: Call<InfoResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onNext(t: InfoResponse) {
+                    Log.d(TAG,"Next")
+                    view.setUpPropertyAdapter(t)
+                    view.hideLoading()
+                }
+
+                override fun onError(e: Throwable?) {
+                    Log.d(TAG,"Error")
+                }
+            })
     }
 
     override fun setUpChildAdapterData(resultInfo: InfoResponse):List<ParentModel> {
@@ -44,8 +60,6 @@ class HomePresenter(private val view: HomeContract.HomeView) : HomeContract.Home
         when(parent.title){
             "Classes"-> parent.children.addAll(resultInfo.classes)
             "Sets"->parent.children.addAll(resultInfo.sets)
-//            "Standard"->parent.children.addAll(resultInfo.standard)
-//            "Wild"->parent.children.addAll(resultInfo.wild)
             "Types"->parent.children.addAll(resultInfo.types)
             "Factions"->parent.children.addAll(resultInfo.factions)
             "Qualities"->parent.children.addAll(resultInfo.qualities)
