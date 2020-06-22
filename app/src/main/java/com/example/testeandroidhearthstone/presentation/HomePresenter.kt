@@ -1,7 +1,7 @@
 package com.example.testeandroidhearthstone.presentation
 
 import android.util.Log
-import com.example.testeandroidhearthstone.data.ParentModel
+import com.example.testeandroidhearthstone.data.model.ParentModel
 import com.example.testeandroidhearthstone.factory.ParentDataFactory
 import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.response.InfoResponse
@@ -9,7 +9,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers.io
-import retrofit2.Response
 
 class HomePresenter(private val view: HomeContract.HomeView) : HomeContract.HomePresenter {
 
@@ -56,7 +55,7 @@ class HomePresenter(private val view: HomeContract.HomeView) : HomeContract.Home
         return parentList
     }
 
-    override fun newChildRecycler(parent: ParentModel, resultInfo: InfoResponse):ParentModel {
+    override fun newChildRecycler(parent: ParentModel, resultInfo: InfoResponse): ParentModel {
         when(parent.title){
             "Classes"-> parent.children.addAll(resultInfo.classes)
             "Sets"->parent.children.addAll(resultInfo.sets)

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.data.ParentModel
+import com.example.testeandroidhearthstone.data.model.ParentModel
 import kotlinx.android.synthetic.main.recycler_child.view.*
 
 class ParentAdapter(private val mContext: Context, private val properties: List<ParentModel>) :

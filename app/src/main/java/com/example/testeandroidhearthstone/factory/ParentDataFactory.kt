@@ -1,6 +1,6 @@
 package com.example.testeandroidhearthstone.factory
 
-import com.example.testeandroidhearthstone.data.ParentModel
+import com.example.testeandroidhearthstone.data.model.ParentModel
 
 object ParentDataFactory {
 
@@ -12,7 +12,11 @@ object ParentDataFactory {
     fun getParents():List<ParentModel>{
         val parents = mutableListOf<ParentModel>()
         listOfParent.forEach {
-            val parent = ParentModel(it, arrayListOf())
+            val parent =
+                ParentModel(
+                    it,
+                    arrayListOf()
+                )
             parents.add(parent)
             println(parent.title)
         }

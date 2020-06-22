@@ -1,6 +1,6 @@
 package com.example.testeandroidhearthstone.presentation
 
-import com.example.testeandroidhearthstone.data.ParentModel
+import com.example.testeandroidhearthstone.data.model.ParentModel
 import com.example.testeandroidhearthstone.network.response.InfoResponse
 
 interface HomeContract {

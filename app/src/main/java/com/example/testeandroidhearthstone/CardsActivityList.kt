@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.testeandroidhearthstone.data.ICardsRepository
+import com.example.testeandroidhearthstone.data.repository.ISharedPreferences
+import com.example.testeandroidhearthstone.data.repository.SharedPreferences
 import com.example.testeandroidhearthstone.network.response.CardResponse
 import com.example.testeandroidhearthstone.presentation.CardsListContract
 import com.example.testeandroidhearthstone.presentation.CardsListPresenter
@@ -21,7 +24,7 @@ class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cards)
 
-        CardsListPresenter(this)
+        CardsListPresenter(this,SharedPreferences(this))
         btn_back.setOnClickListener {
             this.finish()
         }

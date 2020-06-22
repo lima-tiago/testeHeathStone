@@ -1,4 +1,4 @@
-package com.example.testeandroidhearthstone.data
+package com.example.testeandroidhearthstone.data.model
 
 data class ParentModel(
     val title: String = "",

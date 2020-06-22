@@ -1,6 +1,5 @@
 package com.example.testeandroidhearthstone.network.response
 
-import com.example.testeandroidhearthstone.data.Property
 import com.google.gson.annotations.SerializedName
 
 data class InfoResponse(
