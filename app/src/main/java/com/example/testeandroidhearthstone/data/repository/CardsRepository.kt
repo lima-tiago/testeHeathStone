@@ -1,40 +1,40 @@
-package com.example.testeandroidhearthstone.data
+package com.example.testeandroidhearthstone.data.repository
 
+import com.example.testeandroidhearthstone.data.repository.ICardsRepository
 import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.ApiInterface
 import com.example.testeandroidhearthstone.network.response.CardResponse
 import io.reactivex.rxjava3.core.Observable
 
 class CardsRepository(
-    val api:ApiInterface
-):ICardsRepository {
+    val apiClient:ApiClient
+): ICardsRepository {
 
-    override fun getCards(property: String, param: String) {
-        TODO("Not yet implemented")
+    init {
+
     }
-
     override fun getCardsBySet(param: String): Observable<List<CardResponse>> {
-        TODO("Not yet implemented")
+        return apiClient.getClient().getCardsBySet(param)
     }
 
     override fun getCardsByClass(param: String): Observable<List<CardResponse>> {
-        TODO("Not yet implemented")
+        return apiClient.getClient().getCardsByClass(param)
     }
 
     override fun getCardsByRaces(param: String): Observable<List<CardResponse>> {
-        TODO("Not yet implemented")
+        return apiClient.getClient().getCardsByRaces(param)
     }
 
     override fun getCardsByQualities(param: String): Observable<List<CardResponse>> {
-        TODO("Not yet implemented")
+        return apiClient.getClient().getCardsByQualities(param)
     }
 
     override fun getCardsByTypes(param: String): Observable<List<CardResponse>> {
-        TODO("Not yet implemented")
+        return apiClient.getClient().getCardsByTypes(param)
     }
 
     override fun getCardsByFactions(param: String): Observable<List<CardResponse>> {
-        TODO("Not yet implemented")
+        return apiClient.getClient().getCardsByFactions(param)
     }
 //    override fun getCardsBySet(param: String): Observable<List<CardResponse>> {
 //        return ApiClient.getClient().getCardsBySet(param)

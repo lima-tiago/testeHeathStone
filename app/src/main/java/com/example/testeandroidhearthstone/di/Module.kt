@@ -1,7 +1,7 @@
 package com.example.testeandroidhearthstone.di
 
-import com.example.testeandroidhearthstone.data.CardsRepository
-import com.example.testeandroidhearthstone.data.ICardsRepository
+import com.example.testeandroidhearthstone.data.repository.CardsRepository
+import com.example.testeandroidhearthstone.data.repository.ICardsRepository
 import org.koin.dsl.module
 
 internal object Module {
@@ -9,7 +9,7 @@ internal object Module {
     val module = module {
         single<ICardsRepository> {
             CardsRepository(
-                api = get()
+                apiClient = get()
             )
         }
     }

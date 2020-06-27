@@ -1,6 +1,7 @@
 package com.example.testeandroidhearthstone.presentation
 
 import android.util.Log
+import com.example.testeandroidhearthstone.data.repository.ICardsRepository
 import com.example.testeandroidhearthstone.data.repository.ISharedPreferences
 import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.response.CardResponse
@@ -13,7 +14,8 @@ import java.util.concurrent.ScheduledExecutorService
 
 class CardsListPresenter(
     private val view: CardsListContract.CardsListView,
-    private val sharedPrefs: ISharedPreferences
+    private val sharedPrefs: ISharedPreferences,
+    private val repository: ICardsRepository
 ) :
     CardsListContract.CardsListPresenter {
 
@@ -49,20 +51,21 @@ class CardsListPresenter(
 
     override fun getCallType(property: String, param: String): Observable<List<CardResponse>> {
         return when (property) {
-            "Sets" -> ApiClient.getClient().getCardsBySet(param)
-            "Classes" -> ApiClient.getClient().getCardsByClass(param)
-            "Races" -> ApiClient.getClient().getCardsByRaces(param)
-            "Qualities" -> ApiClient.getClient().getCardsByQualities(param)
-            "Types" -> ApiClient.getClient().getCardsByTypes(param)
-            "Factions" -> ApiClient.getClient().getCardsByFactions(param)
+            "Sets" -> repository.getCardsBySet(param)
+            "Classes" -> repository.getCardsByClass(param)
+            "Races" -> repository.getCardsByRaces(param)
+            "Qualities" -> repository.getCardsByQualities(param)
+            "Types" -> repository.getCardsByTypes(param)
+            "Factions" -> repository.getCardsByFactions(param)
             else -> null
         } as Observable<List<CardResponse>>
     }
 }
 
-//"Sets" -> repository.getCardsBySet(param)
-//"Classes" -> repository.getCardsByClass(param)
-//"Races" -> repository.getCardsByRaces(param)
-//"Qualities" -> repository.getCardsByQualities(param)
-//"Types" -> repository.getCardsByTypes(param)
-//"Factions" -> repository.getCardsByFactions(param)
+
+//"Sets" -> ApiClient.getClient().getCardsBySet(param)
+//"Classes" -> ApiClient.getClient().getCardsByClass(param)
+//"Races" -> ApiClient.getClient().getCardsByRaces(param)
+//"Qualities" -> ApiClient.getClient().getCardsByQualities(param)
+//"Types" -> ApiClient.getClient().getCardsByTypes(param)
+//"Factions" -> ApiClient.getClient().getCardsByFactions(param)

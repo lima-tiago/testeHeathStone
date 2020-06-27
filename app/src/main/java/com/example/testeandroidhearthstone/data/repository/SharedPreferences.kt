@@ -19,7 +19,6 @@ class SharedPreferences(context: Context) : ISharedPreferences {
         mSharedPreferences?.edit()?.clear()
     }
 
-
     override fun addCardToPrefs() {
         TODO("Not yet implemented")
     }
