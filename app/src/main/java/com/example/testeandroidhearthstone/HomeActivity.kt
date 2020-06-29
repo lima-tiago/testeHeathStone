@@ -11,36 +11,34 @@ import com.example.testeandroidhearthstone.presentation.HomePresenter
 import com.example.testeandroidhearthstone.presentation.adapters.ChildAdapter
 import com.example.testeandroidhearthstone.presentation.adapters.ParentAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
+import org.koin.core.KoinComponent
+import org.koin.core.parameter.parametersOf
 
-class HomeActivity : AppCompatActivity() , HomeContract.HomeView {
+class HomeActivity : AppCompatActivity(), HomeContract.HomeView, KoinComponent {
+
+    private val mPresenter:HomeContract.HomePresenter by inject{ parametersOf(this)}
 
     lateinit var recyclerView: RecyclerView
-    private lateinit var mPresenter: HomeContract.HomePresenter
     private lateinit var mPropertyAdapter:ParentAdapter
-    private lateinit var mChildAdapter:ChildAdapter
     private lateinit var mLinearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        HomePresenter(this)
         mPresenter.getApiInfo()
     }
 
     override fun setUpPropertyAdapter(resultInfo: InfoResponse) {
         recyclerView = recycler_property
         mLinearLayoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL, false)
-        mPropertyAdapter = ParentAdapter(this,mPresenter.setUpChildAdapterData(resultInfo))
+        mPropertyAdapter = ParentAdapter(this, mPresenter.setUpChildAdapterData(resultInfo))
 
         recyclerView.apply {
             layoutManager = mLinearLayoutManager
             adapter = mPropertyAdapter
         }
-    }
-
-    override fun setPresenter(presenter: HomeContract.HomePresenter) {
-        this.mPresenter = presenter
     }
 
     override fun hideLoading() {
@@ -50,4 +48,6 @@ class HomeActivity : AppCompatActivity() , HomeContract.HomeView {
     override fun showLoading() {
         loading_main.visibility = View.VISIBLE
     }
+
+
 }

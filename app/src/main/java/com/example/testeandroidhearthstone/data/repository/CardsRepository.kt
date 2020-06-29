@@ -4,59 +4,28 @@ import com.example.testeandroidhearthstone.data.repository.ICardsRepository
 import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.ApiInterface
 import com.example.testeandroidhearthstone.network.response.CardResponse
+import com.example.testeandroidhearthstone.network.response.InfoResponse
 import io.reactivex.rxjava3.core.Observable
 
 class CardsRepository(
-    val apiClient:ApiClient
+    val apiClient:ApiInterface
 ): ICardsRepository {
 
-    init {
-
-    }
-    override fun getCardsBySet(param: String): Observable<List<CardResponse>> {
-        return apiClient.getClient().getCardsBySet(param)
+    override fun getInfo(): Observable<InfoResponse> {
+        return apiClient.getInfo()
     }
 
-    override fun getCardsByClass(param: String): Observable<List<CardResponse>> {
-        return apiClient.getClient().getCardsByClass(param)
+    override fun getCards(property: String, param: String): Observable<List<CardResponse>> {
+        return when (property){
+            "Sets" -> apiClient.getCardsBySet(param)
+            "Classes" -> apiClient.getCardsByClass(param)
+            "Races" -> apiClient.getCardsByRaces(param)
+            "Qualities" -> apiClient.getCardsByQualities(param)
+            "Types" -> apiClient.getCardsByTypes(param)
+            "Factions" -> apiClient.getCardsByFactions(param)
+            else -> null
+        } as Observable<List<CardResponse>>
     }
 
-    override fun getCardsByRaces(param: String): Observable<List<CardResponse>> {
-        return apiClient.getClient().getCardsByRaces(param)
-    }
 
-    override fun getCardsByQualities(param: String): Observable<List<CardResponse>> {
-        return apiClient.getClient().getCardsByQualities(param)
-    }
-
-    override fun getCardsByTypes(param: String): Observable<List<CardResponse>> {
-        return apiClient.getClient().getCardsByTypes(param)
-    }
-
-    override fun getCardsByFactions(param: String): Observable<List<CardResponse>> {
-        return apiClient.getClient().getCardsByFactions(param)
-    }
-//    override fun getCardsBySet(param: String): Observable<List<CardResponse>> {
-//        return ApiClient.getClient().getCardsBySet(param)
-//    }
-//
-//    override fun getCardsByClass(param: String): Observable<List<CardResponse>> {
-//        return ApiClient.getClient().getCardsByClass(param)
-//    }
-//
-//    override fun getCardsByRaces(param: String): Observable<List<CardResponse>> {
-//        return ApiClient.getClient().getCardsByRaces(param)
-//    }
-//
-//    override fun getCardsByQualities(param: String): Observable<List<CardResponse>> {
-//        return ApiClient.getClient().getCardsByQualities(param)
-//    }
-//
-//    override fun getCardsByTypes(param: String): Observable<List<CardResponse>> {
-//        return ApiClient.getClient().getCardsByTypes(param)
-//    }
-//
-//    override fun getCardsByFactions(param: String): Observable<List<CardResponse>> {
-//        return ApiClient.getClient().getCardsByFactions(param)
-//    }
 }

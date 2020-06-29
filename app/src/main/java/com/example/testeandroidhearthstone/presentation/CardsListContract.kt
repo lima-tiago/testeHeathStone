@@ -6,16 +6,14 @@ import retrofit2.Call
 
 interface CardsListContract {
 
-    interface CardsListView : BaseView<CardsListPresenter> {
-
+    interface CardsListView {
         fun getIncomingExtraProperty(): String
         fun getIncomingExtraParam(): String
         fun setUpAdapter(cards: List<CardResponse>)
+        fun setTitle(param: String)
     }
 
-    interface CardsListPresenter : BasePresenter {
-
+    interface CardsListPresenter  {
         fun getCards(property: String, param: String)
-        fun getCallType(property: String, param: String): Observable<List<CardResponse>>?
     }
 }

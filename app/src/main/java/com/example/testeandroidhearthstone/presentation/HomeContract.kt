@@ -5,14 +5,14 @@ import com.example.testeandroidhearthstone.network.response.InfoResponse
 
 interface HomeContract {
 
-    interface HomeView : BaseView<HomePresenter> {
+    interface HomeView {
 
         fun setUpPropertyAdapter(resultInfo: InfoResponse)
         fun hideLoading()
         fun showLoading()
     }
 
-    interface HomePresenter : BasePresenter {
+    interface HomePresenter{
 
         fun getApiInfo()
         fun newChildRecycler(parents: ParentModel, resultInfo: InfoResponse): ParentModel
