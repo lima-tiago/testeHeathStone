@@ -50,6 +50,8 @@ class CardsListPresenter(
     }
 
     override fun getCallType(property: String, param: String): Observable<List<CardResponse>> {
+
+        // move the 'when' to repository and call only getCards with property and param as variables
         return when (property) {
             "Sets" -> repository.getCardsBySet(param)
             "Classes" -> repository.getCardsByClass(param)
