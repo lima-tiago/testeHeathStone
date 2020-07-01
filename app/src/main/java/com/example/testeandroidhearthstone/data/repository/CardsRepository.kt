@@ -1,25 +1,24 @@
 package com.example.testeandroidhearthstone.data.repository
 
-import com.example.testeandroidhearthstone.data.model.Card
-import com.example.testeandroidhearthstone.data.repository.ICardsRepository
+import android.annotation.SuppressLint
+import android.util.Log
 import com.example.testeandroidhearthstone.data.repository.dao.CardDao
-import com.example.testeandroidhearthstone.network.ApiClient
+import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.network.ApiInterface
-import com.example.testeandroidhearthstone.network.response.CardResponse
-import com.example.testeandroidhearthstone.network.response.InfoResponse
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class CardsRepository(
-    val apiClient:ApiInterface,
+    val apiClient: ApiInterface
+    ,
     val cardDao: CardDao
-): ICardsRepository {
+) : ICardsRepository {
 
-    override fun getInfo(): Observable<InfoResponse> {
-        return apiClient.getInfo()
-    }
 
-    override fun getCards(property: String, param: String): Observable<List<CardResponse>> {
-        return when (property){
+    override fun getCards(property: String, param: String): Observable<List<Card_Entity>> {
+        return when (property) {
             "Sets" -> apiClient.getCardsBySet(param)
             "Classes" -> apiClient.getCardsByClass(param)
             "Races" -> apiClient.getCardsByRaces(param)
@@ -27,27 +26,37 @@ class CardsRepository(
             "Types" -> apiClient.getCardsByTypes(param)
             "Factions" -> apiClient.getCardsByFactions(param)
             else -> null
-        } as Observable<List<CardResponse>>
+        } as Observable<List<Card_Entity>>
     }
 
-
-    override fun insert(card: Card) {
-        TODO("Not yet implemented")
+    @SuppressLint("CheckResult")
+    override fun insert(card: Card_Entity) {
+        cardDao.insert(card)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { Log.d("RxJava", "Insert Success") },
+                { Log.d("RxJava", "Insert Error ${it.message}") }
+            )
     }
-
-    override fun update(card: Card) {
-        TODO("Not yet implemented")
-    }
-
-    override fun delete(card: Card) {
-        TODO("Not yet implemented")
-    }
-
+//
+//    override fun update(card: com.example.testeandroidhearthstone.domain.entities.Card) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun delete(card: com.example.testeandroidhearthstone.domain.entities.Card) {
+//        TODO("Not yet implemented")
+//    }
+//
+    @SuppressLint("CheckResult")
     override fun deleteAllCards() {
-        TODO("Not yet implemented")
-    }
-
-    override fun getAllCards(): Observable<List<Card>> {
-        TODO("Not yet implemented")
-    }
+        Completable.fromAction { cardDao.deleteAllCards() }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                Log.d("RxJava" ,"Delete Success")
+            }
+}
+//
+//    override fun getAllCards(): Observable<List<Card>> = cardDao.getAllCards()
 }

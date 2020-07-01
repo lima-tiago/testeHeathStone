@@ -2,7 +2,9 @@ package com.example.testeandroidhearthstone.di
 
 import androidx.room.Room
 import com.example.testeandroidhearthstone.data.repository.CardsRepository
+import com.example.testeandroidhearthstone.data.repository.HomeRepository
 import com.example.testeandroidhearthstone.data.repository.ICardsRepository
+import com.example.testeandroidhearthstone.data.repository.IHomeRepository
 import com.example.testeandroidhearthstone.data.repository.dao.CardDao
 import com.example.testeandroidhearthstone.data.repository.database.AppDatabase
 import com.example.testeandroidhearthstone.network.ApiClient
@@ -12,10 +14,17 @@ import org.koin.android.ext.koin.androidApplication
 internal object DataModule {
 
     val module = org.koin.dsl.module {
-        factory<ICardsRepository> {
+        single<ICardsRepository> {
             CardsRepository(
-                apiClient = get(),
+                apiClient = get()
+                ,
                 cardDao = get()
+            )
+        }
+
+        single<IHomeRepository> {
+            HomeRepository(
+                apiClient = get()
             )
         }
 
@@ -23,11 +32,13 @@ internal object DataModule {
             ApiClient.getClient()
         }
 
-        single<CardDao> {
-            Room.databaseBuilder(androidApplication(),AppDatabase::class.java,"cards-db").build().cardDao()
+        single<AppDatabase> {
+            Room.databaseBuilder(get(), AppDatabase::class.java,"cards-db").fallbackToDestructiveMigration().build()
         }
 
-        single { get<AppDatabase>().cardDao() }
+        single<CardDao> { get<AppDatabase>().cardDao() }
 
+//        single<ICardsRepository> { CardsRepository(get(),get()) }
+//
     }
 }

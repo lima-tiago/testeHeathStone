@@ -1,7 +1,7 @@
 package com.example.testeandroidhearthstone.commons
 
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.Completable
+import io.reactivex.Observable
 
 abstract class UseCase {
 

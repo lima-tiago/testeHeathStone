@@ -1,18 +1,15 @@
 package com.example.testeandroidhearthstone.data.repository
 
-import com.example.testeandroidhearthstone.data.model.Card
-import com.example.testeandroidhearthstone.network.response.CardResponse
-import com.example.testeandroidhearthstone.network.response.InfoResponse
-import io.reactivex.rxjava3.core.Observable
+import com.example.testeandroidhearthstone.domain.entities.Card_Entity
+import io.reactivex.Observable
 
 interface ICardsRepository {
-    fun getInfo(): Observable<InfoResponse>
-    fun getCards(property: String, param: String): Observable<List<CardResponse>>
 
+    fun getCards(property: String, param: String): Observable<List<Card_Entity>>
 
-    fun insert(card: Card)
-    fun update(card: Card)
-    fun delete(card: Card)
+    fun insert(card: Card_Entity)
+//    fun update(card: com.example.testeandroidhearthstone.domain.entities.Card)
+//    fun delete(card: com.example.testeandroidhearthstone.domain.entities.Card)
     fun deleteAllCards()
-    fun getAllCards(): Observable<List<Card>>
+//    fun getAllCards(): Observable<List<Card>>
 }

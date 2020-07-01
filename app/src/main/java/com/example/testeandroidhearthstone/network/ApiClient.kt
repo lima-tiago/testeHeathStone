@@ -4,7 +4,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
@@ -22,7 +22,7 @@ object ApiClient {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://omgvamp-hearthstone-v1.p.rapidapi.com")
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttp.build())
             .build()
 

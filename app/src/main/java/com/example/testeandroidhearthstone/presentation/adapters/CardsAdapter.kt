@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.network.response.CardResponse
+import com.example.testeandroidhearthstone.network.response.Card_Entity
 import kotlinx.android.synthetic.main.card_item.view.*
 
 
-class CardsAdapter(private val mContext: Context, private val cards: List<CardResponse>) :
+class CardsAdapter(private val mContext: Context, private val cards: List<Card_Entity>) :
     RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(

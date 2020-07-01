@@ -2,7 +2,7 @@ package com.example.testeandroidhearthstone.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CardResponse(
+data class Card_Entity(
     @SerializedName("cardId") val cardId: String,
 //    @SerializedName("cardSet") val cardSet: String,
 //    @SerializedName("dbfId") val dbfId: String,

@@ -1,12 +1,9 @@
 package com.example.testeandroidhearthstone.network
 
-import com.example.testeandroidhearthstone.network.response.CardResponse
+import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.network.response.InfoResponse
-import io.reactivex.rxjava3.core.Observable
-import retrofit2.Call
-import retrofit2.Response
+import io.reactivex.Observable
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiInterface {
@@ -15,22 +12,22 @@ interface ApiInterface {
     fun getInfo(): Observable<InfoResponse>
 
     @GET("/cards/sets/{param}")
-    fun getCardsBySet(@Path("param") param: String): Observable<List<CardResponse>>
+    fun getCardsBySet(@Path("param") param: String): Observable<List<Card_Entity>>
 
     @GET("/cards/classes/{param}")
-    fun getCardsByClass(@Path("param") param: String): Observable<List<CardResponse>>
+    fun getCardsByClass(@Path("param") param: String): Observable<List<Card_Entity>>
 
     @GET("/cards/races/{param}")
-    fun getCardsByRaces(@Path("param") param: String): Observable<List<CardResponse>>
+    fun getCardsByRaces(@Path("param") param: String): Observable<List<Card_Entity>>
 
     @GET("/cards/qualities/{param}")
-    fun getCardsByQualities(@Path("param") param: String): Observable<List<CardResponse>>
+    fun getCardsByQualities(@Path("param") param: String): Observable<List<Card_Entity>>
 
     @GET("/cards/types/{param}")
-    fun getCardsByTypes(@Path("param") param: String): Observable<List<CardResponse>>
+    fun getCardsByTypes(@Path("param") param: String): Observable<List<Card_Entity>>
 
     @GET("/cards/factions/{param}")
-    fun getCardsByFactions(@Path("param") param: String): Observable<List<CardResponse>>
+    fun getCardsByFactions(@Path("param") param: String): Observable<List<Card_Entity>>
 
 }
 

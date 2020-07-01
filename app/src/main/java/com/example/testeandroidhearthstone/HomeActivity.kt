@@ -15,12 +15,12 @@ import org.koin.android.ext.android.inject
 import org.koin.core.KoinComponent
 import org.koin.core.parameter.parametersOf
 
-class HomeActivity : AppCompatActivity(), HomeContract.HomeView, KoinComponent {
+class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
 
-    private val mPresenter:HomeContract.HomePresenter by inject{ parametersOf(this)}
+    private val mPresenter: HomeContract.HomePresenter by inject { parametersOf(this) }
 
     lateinit var recyclerView: RecyclerView
-    private lateinit var mPropertyAdapter:ParentAdapter
+    private lateinit var mPropertyAdapter: ParentAdapter
     private lateinit var mLinearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView, KoinComponent {
 
     override fun setUpPropertyAdapter(resultInfo: InfoResponse) {
         recyclerView = recycler_property
-        mLinearLayoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL, false)
+        mLinearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         mPropertyAdapter = ParentAdapter(this, mPresenter.setUpChildAdapterData(resultInfo))
 
         recyclerView.apply {

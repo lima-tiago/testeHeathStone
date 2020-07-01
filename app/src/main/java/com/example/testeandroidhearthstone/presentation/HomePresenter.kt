@@ -3,18 +3,19 @@ package com.example.testeandroidhearthstone.presentation
 import android.util.Log
 import com.example.testeandroidhearthstone.data.model.ParentModel
 import com.example.testeandroidhearthstone.data.repository.ICardsRepository
+import com.example.testeandroidhearthstone.data.repository.IHomeRepository
 import com.example.testeandroidhearthstone.factory.ParentDataFactory
 import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.response.InfoResponse
 import com.example.testeandroidhearthstone.usecases.ILoadHomeInfoUseCase
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers.io
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers.io
 
 class HomePresenter(
     private val view: HomeContract.HomeView,
-    private val repository: ICardsRepository,
+    private val repository: IHomeRepository,
     private val loadHomeInfoUseCase: ILoadHomeInfoUseCase
 ) : HomeContract.HomePresenter {
 
@@ -30,7 +31,7 @@ class HomePresenter(
                     Log.d(TAG, "Completed")
                 }
 
-                override fun onSubscribe(d: Disposable?) {
+                override fun onSubscribe(d: Disposable) {
                     Log.d(TAG, "Subscribed")
                 }
 
@@ -40,7 +41,7 @@ class HomePresenter(
                     view.hideLoading()
                 }
 
-                override fun onError(e: Throwable?) {
+                override fun onError(e: Throwable) {
                     Log.d(TAG, "Error")
                 }
             })
