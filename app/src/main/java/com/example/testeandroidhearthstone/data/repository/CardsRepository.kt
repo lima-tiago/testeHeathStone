@@ -6,6 +6,7 @@ import com.example.testeandroidhearthstone.data.repository.dao.CardDao
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.network.ApiInterface
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -39,7 +40,11 @@ class CardsRepository(
                 { Log.d("RxJava", "Insert Error ${it.message}") }
             )
     }
-//
+
+    @SuppressLint("CheckResult")
+    override fun getCardsWithId(): Observable<List<Card_Entity>> = cardDao.getCardsWithId()
+
+    //
 //    override fun update(card: com.example.testeandroidhearthstone.domain.entities.Card) {
 //        TODO("Not yet implemented")
 //    }

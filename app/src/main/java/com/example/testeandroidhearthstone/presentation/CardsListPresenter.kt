@@ -1,5 +1,6 @@
 package com.example.testeandroidhearthstone.presentation
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.testeandroidhearthstone.data.repository.ICardsRepository
@@ -52,7 +53,7 @@ class CardsListPresenter(
                         )
                         insert(card)
                     }
-//                    view.setUpAdapter(t)
+                    getCardsWithId()
                 }
 
                 override fun onError(e: Throwable) {
@@ -61,7 +62,16 @@ class CardsListPresenter(
             })
     }
 
-    override fun insert(cardEntity: Card_Entity) {
-        repository.insert(cardEntity)
+    @SuppressLint("CheckResult")
+    override fun getCardsWithId() {
+        repository.getCardsWithId()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { list -> view.setUpAdapter(list) }
+            )
     }
+
+    override fun insert(cardEntity: Card_Entity) = repository.insert(cardEntity)
+
 }

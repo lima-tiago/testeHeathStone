@@ -1,6 +1,7 @@
 package com.example.testeandroidhearthstone.data.repository
 
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
+import io.reactivex.Flowable
 import io.reactivex.Observable
 
 interface ICardsRepository {
@@ -12,4 +13,5 @@ interface ICardsRepository {
 //    fun delete(card: com.example.testeandroidhearthstone.domain.entities.Card)
     fun deleteAllCards()
 //    fun getAllCards(): Observable<List<Card>>
+    fun getCardsWithId(): Observable<List<Card_Entity>>
 }

@@ -39,6 +39,5 @@ internal object DataModule {
         single<CardDao> { get<AppDatabase>().cardDao() }
 
 //        single<ICardsRepository> { CardsRepository(get(),get()) }
-//
     }
 }

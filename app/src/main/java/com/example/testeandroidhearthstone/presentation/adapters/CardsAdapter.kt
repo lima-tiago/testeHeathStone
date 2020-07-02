@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.network.response.Card_Entity
+import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import kotlinx.android.synthetic.main.card_item.view.*
-
 
 class CardsAdapter(private val mContext: Context, private val cards: List<Card_Entity>) :
     RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
@@ -38,8 +37,11 @@ class CardsAdapter(private val mContext: Context, private val cards: List<Card_E
         Glide
             .with(mContext)
             .load("https://art.hearthstonejson.com/v1/render/latest/${card.locale}/512x/${card.cardId}.png")
+            .thumbnail(0.5f)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.imageView)
+
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

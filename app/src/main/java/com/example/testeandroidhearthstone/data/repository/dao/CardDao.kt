@@ -3,6 +3,8 @@ package com.example.testeandroidhearthstone.data.repository.dao
 import androidx.room.*
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Observable
 
 @Dao
 interface CardDao {
@@ -24,5 +26,6 @@ interface CardDao {
 
     //funcao que pega 10 imagens
 
-
+    @Query("SELECT * FROM cards_table LIMIT 10")
+    fun getCardsWithId():Observable<List<Card_Entity>>
 }
