@@ -15,25 +15,17 @@ internal object PresentationModule {
         factory<HomeContract.HomePresenter> { (view: HomeContract.HomeView) ->
             HomePresenter(
                 view = view,
-                repository = get(),
                 loadHomeInfoUseCase = get()
             )
         }
 
-//        factory<CardsListContract.CardsListPresenter> { (view: CardsListContract.CardsListView) ->
-//            CardsListPresenter(
-//                view = view,
-//                repository = get(),
-//                loadCardsUseCase = get(),
-//                interactor = get()
-//            )
-//        }
-
-        viewModel {(view: CardsActivityList) ->
+        factory<CardsListContract.CardsListPresenter> { (view: CardsListContract.CardsListView) ->
             CardsListPresenter(
-            view = view,
-            repository = get(),
-            loadCardsUseCase = get()
-        ) }
+                view = view,
+                repository = get(),
+                loadCardsUseCase = get()
+            )
+        }
+
     }
 }

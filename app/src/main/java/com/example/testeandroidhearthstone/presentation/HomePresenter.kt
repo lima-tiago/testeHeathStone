@@ -15,7 +15,6 @@ import io.reactivex.schedulers.Schedulers.io
 
 class HomePresenter(
     private val view: HomeContract.HomeView,
-    private val repository: IHomeRepository,
     private val loadHomeInfoUseCase: ILoadHomeInfoUseCase
 ) : HomeContract.HomePresenter {
 
@@ -23,7 +22,7 @@ class HomePresenter(
 
     override fun getApiInfo() {
         view.showLoading()
-        repository.getInfo()
+        loadHomeInfoUseCase.execute(true)
             .subscribeOn(io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<InfoResponse> {

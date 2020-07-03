@@ -11,12 +11,13 @@ import com.example.testeandroidhearthstone.presentation.CardsListPresenter
 import com.example.testeandroidhearthstone.presentation.adapters.CardsAdapter
 import com.example.testeandroidhearthstone.presentation.adapters.CardsPaginator
 import kotlinx.android.synthetic.main.activity_cards.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
 
-    private val mPresenter: CardsListPresenter by viewModel{ parametersOf(this) }
+    private val mPresenter: CardsListContract.CardsListPresenter by inject { parametersOf(this) }
 
     lateinit var recyclerView: RecyclerView
     private lateinit var mAdapter: CardsAdapter

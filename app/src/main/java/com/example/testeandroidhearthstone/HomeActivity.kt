@@ -27,6 +27,7 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        shimmerLayout.startShimmerAnimation()
         mPresenter.getApiInfo()
     }
 
