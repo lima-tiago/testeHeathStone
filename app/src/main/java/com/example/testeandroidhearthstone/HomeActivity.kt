@@ -27,7 +27,6 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        shimmerLayout.startShimmerAnimation()
         mPresenter.getApiInfo()
     }
 
@@ -42,12 +41,14 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
         }
     }
 
-    override fun hideLoading() {
-        loading_main.visibility = View.GONE
+    override fun startShimmer() {
+        shimmerLayout.startShimmer()
+        shimmerLayout.visibility = View.VISIBLE
     }
 
-    override fun showLoading() {
-        loading_main.visibility = View.VISIBLE
+    override fun stopShimmer() {
+        shimmerLayout.stopShimmer()
+        shimmerLayout.visibility = View.GONE
     }
 
 

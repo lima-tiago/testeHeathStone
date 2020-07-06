@@ -8,8 +8,8 @@ interface HomeContract {
     interface HomeView {
 
         fun setUpPropertyAdapter(resultInfo: InfoResponse)
-        fun hideLoading()
-        fun showLoading()
+        fun startShimmer()
+        fun stopShimmer()
     }
 
     interface HomePresenter{

@@ -2,10 +2,7 @@ package com.example.testeandroidhearthstone.presentation
 
 import android.util.Log
 import com.example.testeandroidhearthstone.data.model.ParentModel
-import com.example.testeandroidhearthstone.data.repository.ICardsRepository
-import com.example.testeandroidhearthstone.data.repository.IHomeRepository
 import com.example.testeandroidhearthstone.factory.ParentDataFactory
-import com.example.testeandroidhearthstone.network.ApiClient
 import com.example.testeandroidhearthstone.network.response.InfoResponse
 import com.example.testeandroidhearthstone.usecases.ILoadHomeInfoUseCase
 import io.reactivex.Observer
@@ -21,7 +18,7 @@ class HomePresenter(
     private val TAG = "homepresenter"
 
     override fun getApiInfo() {
-        view.showLoading()
+        view.startShimmer()
         loadHomeInfoUseCase.execute(true)
             .subscribeOn(io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -37,7 +34,7 @@ class HomePresenter(
                 override fun onNext(t: InfoResponse) {
                     Log.d(TAG, "Next")
                     view.setUpPropertyAdapter(t)
-                    view.hideLoading()
+                    view.stopShimmer()
                 }
 
                 override fun onError(e: Throwable) {

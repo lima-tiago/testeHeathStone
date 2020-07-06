@@ -29,10 +29,11 @@
         app:layout_constraintTop_toBottomOf="@id/tvHearthStone"/>
 
 
-    <io.supercharge.shimmerlayout.ShimmerLayout
+    <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginTop="33dp"
         app:layout_constraintStart_toStartOf="@id/tvHearthStone"
         app:layout_constraintTop_toBottomOf="@id/tvHearthStone">
@@ -40,16 +41,19 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:layout_marginStart="14dp"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/placeholder_horizontalrecycler"/>
-            <include layout="@layout/placeholder_horizontalrecycler"/>
-            <include layout="@layout/placeholder_horizontalrecycler"/>
-            <include layout="@layout/placeholder_horizontalrecycler"/>
+            <include layout="@layout/placeholder_propertyrecycler"/>
+            <include layout="@layout/placeholder_propertyrecycler"/>
+            <include layout="@layout/placeholder_propertyrecycler"/>
+            <include layout="@layout/placeholder_propertyrecycler"/>
+            <include layout="@layout/placeholder_propertyrecycler"/>
+            <include layout="@layout/placeholder_propertyrecycler"/>
 
         </LinearLayout>
 
-    </io.supercharge.shimmerlayout.ShimmerLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,15 +69,5 @@
             />
 
     </ScrollView>
-
-    <ProgressBar
-        android:id="@+id/loading_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHearthStone"
-        android:layout_marginTop="33dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
