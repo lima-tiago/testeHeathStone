@@ -14,9 +14,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="91dp"
         android:background="@drawable/back_button_black"
-        android:drawableStart="@drawable/back_icon_white"
-        android:paddingStart="18dp"
+        android:drawableStart="@drawable/ic_baseline_arrow_back_24"
+        android:paddingStart="22dp"
         android:paddingEnd="18dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

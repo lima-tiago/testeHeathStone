@@ -1,12 +1,14 @@
 package com.example.testeandroidhearthstone.presentation.home
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.data.model.response.HomeInfoResponse
+import com.example.testeandroidhearthstone.data.model.HomeInfo
+import com.example.testeandroidhearthstone.presentation.cardsList.CardsActivityList
 import com.example.testeandroidhearthstone.presentation.home.adapter.ParentAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
@@ -27,13 +29,13 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
         mPresenter.getApiInfo()
     }
 
-    override fun setUpPropertyAdapter(resultInfo: HomeInfoResponse) {
+    override fun setUpPropertyAdapter(resultInfo: List<HomeInfo>) {
         recyclerView = recycler_property
         mLinearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         mPropertyAdapter =
             ParentAdapter(
                 this,
-                mPresenter.setUpChildAdapterData(resultInfo)
+                resultInfo
             )
 
         recyclerView.apply {
@@ -51,6 +53,4 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
         shimmerLayout.stopShimmer()
         shimmerLayout.visibility = View.GONE
     }
-
-
 }

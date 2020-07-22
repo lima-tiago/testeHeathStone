@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.testeandroidhearthstone.data.repositories.dao.CardDao
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 
-@Database(entities = [(Card_Entity::class)],version = 1,exportSchema = false)
+@Database(entities = [(Card_Entity::class)],version = 2,exportSchema = false)
 abstract class AppDatabase:RoomDatabase(){
     abstract fun cardDao():CardDao
 }

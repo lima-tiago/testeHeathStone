@@ -9,7 +9,6 @@ data class Card_Entity(
     @PrimaryKey(autoGenerate = true) var id: Int?,
     @ColumnInfo(name = "card_id") var cardId: String,
     @ColumnInfo(name = "img") var img: String?,
-    @ColumnInfo(name = "img_gold") var imgGold: String?,
     @ColumnInfo(name = "locale") var locale: String,
     @ColumnInfo(name = "type") var type: String
 

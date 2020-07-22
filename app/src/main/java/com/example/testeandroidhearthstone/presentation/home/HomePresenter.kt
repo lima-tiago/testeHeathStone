@@ -1,8 +1,7 @@
 package com.example.testeandroidhearthstone.presentation.home
 
 import android.util.Log
-import com.example.testeandroidhearthstone.data.model.ParentModel
-import com.example.testeandroidhearthstone.factory.ParentDataFactory
+import com.example.testeandroidhearthstone.data.mapper.map
 import com.example.testeandroidhearthstone.data.model.response.HomeInfoResponse
 import com.example.testeandroidhearthstone.domain.usecases.ILoadHomeInfoUseCase
 import io.reactivex.Observer
@@ -33,7 +32,9 @@ class HomePresenter(
 
                 override fun onNext(t: HomeInfoResponse) {
                     Log.d(TAG, "Next")
-                    view.setUpPropertyAdapter(t)
+                    t.map().let {
+                        view.setUpPropertyAdapter(it)
+                    }
                     view.stopShimmer()
                 }
 
@@ -41,27 +42,5 @@ class HomePresenter(
                     Log.d(TAG, "Error")
                 }
             })
-    }
-
-    override fun setUpChildAdapterData(resultInfo: HomeInfoResponse): List<ParentModel> {
-        val parentList = mutableListOf<ParentModel>()
-        ParentDataFactory.getParents().forEach {
-            parentList.add(newChildRecycler(it, resultInfo))
-        }
-        return parentList
-    }
-
-    override fun newChildRecycler(parent: ParentModel, resultInfo: HomeInfoResponse): ParentModel {
-        when (parent.title) {
-            "Classes" -> parent.children.addAll(resultInfo.classes)
-            "Sets" -> parent.children.addAll(resultInfo.sets)
-            "Types" -> parent.children.addAll(resultInfo.types)
-            "Factions" -> parent.children.addAll(resultInfo.factions)
-            "Qualities" -> parent.children.addAll(resultInfo.qualities)
-            "Races" -> parent.children.addAll(resultInfo.races)
-            else -> {
-            }
-        }
-        return parent
     }
 }

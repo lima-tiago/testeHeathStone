@@ -2,7 +2,9 @@ package com.example.testeandroidhearthstone.presentation.cardsList
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.example.testeandroidhearthstone.data.mapper.map
 import com.example.testeandroidhearthstone.data.model.request.CardsRequest
+import com.example.testeandroidhearthstone.data.model.response.CardsResponse
 import com.example.testeandroidhearthstone.domain.repositories.ICardsRepository
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.domain.usecases.ILoadCardsUseCase
@@ -30,7 +32,7 @@ class CardsListPresenter(
         loadCardsUseCase.execute(params)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : Observer<List<Card_Entity>> {
+            .subscribe(object : Observer<List<CardsResponse>> {
                 override fun onComplete() {
                     Log.d(TAG, "Completed")
                 }
@@ -39,21 +41,29 @@ class CardsListPresenter(
                     Log.d(TAG, "Subscribed")
                 }
 
-                override fun onNext(t: List<Card_Entity>) {
-                    view.showToast("finished fetching")
+                override fun onNext(t: List<CardsResponse>) {
                     println("Hello finished")
-                    t.forEach {
-                        val card = Card_Entity(
-                            null,
-                            it.cardId,
-                            it.img,
-                            it.imgGold,
-                            it.locale,
-                            it.type
-                        )
-                        insert(card)
+
+                    t.map().let {
+                        view.setUpAdapter(it)
+                        it.forEach {
+                            Log.d(TAG, it.cardId)
+                        }
                     }
-                    getCardsWithId()
+
+//                    {
+//                        val card = Card_Entity(
+//                            null,
+//                            it.cardId,
+//                            it.img,
+//                            it.imgGold,
+//                            it.locale,
+//                            it.type
+//                        )
+//                        insert(card)
+//                    }
+
+
                 }
 
                 override fun onError(e: Throwable) {

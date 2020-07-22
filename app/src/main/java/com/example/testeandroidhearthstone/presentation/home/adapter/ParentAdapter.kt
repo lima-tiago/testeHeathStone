@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.data.model.ParentModel
+import com.example.testeandroidhearthstone.data.model.HomeInfo
 import kotlinx.android.synthetic.main.recycler_child.view.*
 
-class ParentAdapter(private val mContext: Context, private val properties: List<ParentModel>) :
+class ParentAdapter(
+    private val mContext: Context,
+    private val properties: List<HomeInfo>
+) :
     RecyclerView.Adapter<ParentAdapter.ViewHolder>() {
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -34,7 +37,7 @@ class ParentAdapter(private val mContext: Context, private val properties: List<
         holder: ViewHolder,
         position: Int
     ) {
-        holder.textView.text = properties[position].title
+        holder.textView.text = properties[position].property
         val childLayoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
         childLayoutManager.initialPrefetchItemCount = 4
         holder.recyclerView.apply {
@@ -42,8 +45,7 @@ class ParentAdapter(private val mContext: Context, private val properties: List<
             adapter =
                 ChildAdapter(
                     mContext,
-                    properties[position].children,
-                    properties[position].title
+                    properties[position]
                 )
             setRecycledViewPool(viewPool)
         }

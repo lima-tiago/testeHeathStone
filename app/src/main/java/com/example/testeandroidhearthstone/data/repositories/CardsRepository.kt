@@ -2,6 +2,7 @@ package com.example.testeandroidhearthstone.data.repositories
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.example.testeandroidhearthstone.data.model.response.CardsResponse
 import com.example.testeandroidhearthstone.data.repositories.dao.CardDao
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.data.remote.ApiInterface
@@ -16,9 +17,8 @@ class CardsRepository(
     val cardDao: CardDao
 ) : ICardsRepository {
 
-
-    override fun getCards(property: String, param: String): Observable<List<Card_Entity>> {
-        deleteAllCards()
+    override fun getCards(property: String, param: String): Observable<List<CardsResponse>> {
+//        deleteAllCards()
         return when (property) {
             "Sets" -> apiClient.getCardsBySet(param)
             "Classes" -> apiClient.getCardsByClass(param)
@@ -26,8 +26,10 @@ class CardsRepository(
             "Qualities" -> apiClient.getCardsByQualities(param)
             "Types" -> apiClient.getCardsByTypes(param)
             "Factions" -> apiClient.getCardsByFactions(param)
+            "Standard" -> apiClient.getCardsByFactions(param)
+            "Wild" -> apiClient.getCardsByFactions(param)
             else -> null
-        } as Observable<List<Card_Entity>>
+        } as Observable<List<CardsResponse>>
     }
 
     @SuppressLint("CheckResult")
