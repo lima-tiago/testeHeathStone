@@ -1,12 +1,9 @@
 package com.example.testeandroidhearthstone.presentation.cardsList
 
-import android.annotation.SuppressLint
 import android.util.Log
 import com.example.testeandroidhearthstone.data.mapper.map
 import com.example.testeandroidhearthstone.data.model.request.CardsRequest
 import com.example.testeandroidhearthstone.data.model.response.CardsResponse
-import com.example.testeandroidhearthstone.domain.repositories.ICardsRepository
-import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.domain.usecases.ILoadCardsUseCase
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 
 class CardsListPresenter(
     private val view: CardsListContract.CardsListView,
-    private val repository: ICardsRepository,
     private val loadCardsUseCase: ILoadCardsUseCase
 ) :
     CardsListContract.CardsListPresenter {
@@ -50,20 +46,6 @@ class CardsListPresenter(
                             Log.d(TAG, it.cardId)
                         }
                     }
-
-//                    {
-//                        val card = Card_Entity(
-//                            null,
-//                            it.cardId,
-//                            it.img,
-//                            it.imgGold,
-//                            it.locale,
-//                            it.type
-//                        )
-//                        insert(card)
-//                    }
-
-
                 }
 
                 override fun onError(e: Throwable) {
@@ -71,15 +53,4 @@ class CardsListPresenter(
                 }
             })
     }
-
-    @SuppressLint("CheckResult")
-    override fun getCardsWithId() {
-        repository.getCardsWithId()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { list -> view.setUpAdapter(list) }
-    }
-
-    override fun insert(cardEntity: Card_Entity) = repository.insert(cardEntity)
-
 }

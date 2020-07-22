@@ -44,12 +44,12 @@
             android:layout_marginStart="14dp"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/placeholder_propertyrecycler"/>
-            <include layout="@layout/placeholder_propertyrecycler"/>
-            <include layout="@layout/placeholder_propertyrecycler"/>
-            <include layout="@layout/placeholder_propertyrecycler"/>
-            <include layout="@layout/placeholder_propertyrecycler"/>
-            <include layout="@layout/placeholder_propertyrecycler"/>
+            <include layout="@layout/home_recycler_properties_placeholder"/>
+            <include layout="@layout/home_recycler_properties_placeholder"/>
+            <include layout="@layout/home_recycler_properties_placeholder"/>
+            <include layout="@layout/home_recycler_properties_placeholder"/>
+            <include layout="@layout/home_recycler_properties_placeholder"/>
+            <include layout="@layout/home_recycler_properties_placeholder"/>
 
         </LinearLayout>
 

@@ -19,10 +19,8 @@ internal object PresentationModule {
         factory<CardsListContract.CardsListPresenter> { (view: CardsListContract.CardsListView) ->
             CardsListPresenter(
                 view = view,
-                repository = get(),
                 loadCardsUseCase = get()
             )
         }
-
     }
 }

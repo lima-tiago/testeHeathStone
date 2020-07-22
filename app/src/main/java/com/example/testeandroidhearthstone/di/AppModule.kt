@@ -7,7 +7,7 @@ import org.koin.core.module.Module
 
 object AppModule {
 
-    fun getModule(): List<Module> = listOf(
+    fun getModules(): List<Module> = listOf(
         PresentationModule.module,
         DataModule.module,
         DomainModule.module

@@ -9,8 +9,8 @@ fun HomeInfoResponse.map(): List<HomeInfo>{
     this.run {
         homeInfo.add(HomeInfo(HomeInfoResponse::classes.name.capitalize(),classes))
         homeInfo.add(HomeInfo(HomeInfoResponse::sets.name.capitalize(),sets))
-        homeInfo.add(HomeInfo(HomeInfoResponse::standard.name.capitalize(),standard))
-        homeInfo.add(HomeInfo(HomeInfoResponse::wild.name.capitalize(),wild))
+//        homeInfo.add(HomeInfo(HomeInfoResponse::standard.name.capitalize(),standard))
+//        homeInfo.add(HomeInfo(HomeInfoResponse::wild.name.capitalize(),wild))
         homeInfo.add(HomeInfo(HomeInfoResponse::types.name.capitalize(),types))
         homeInfo.add(HomeInfo(HomeInfoResponse::factions.name.capitalize(),factions))
         homeInfo.add(HomeInfo(HomeInfoResponse::qualities.name.capitalize(),qualities))

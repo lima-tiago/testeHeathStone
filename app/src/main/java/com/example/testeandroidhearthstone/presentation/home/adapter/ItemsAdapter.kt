@@ -1,7 +1,5 @@
 package com.example.testeandroidhearthstone.presentation.home.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,24 +7,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testeandroidhearthstone.presentation.cardsList.CardsActivityList
 import com.example.testeandroidhearthstone.R
 import com.example.testeandroidhearthstone.data.model.HomeInfo
-import kotlinx.android.synthetic.main.child_item.view.*
+import kotlinx.android.synthetic.main.home_recycler_item.view.*
 import java.util.*
 
-class ChildAdapter(
-    private val mContext: Context,
-    private val children: HomeInfo
+class ItemsAdapter(
+    private val children: HomeInfo,
+    private val adapterOnClick: AdapterOnClick
 ) :
-    RecyclerView.Adapter<ChildAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
 
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.child_item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.home_recycler_item, parent, false)
         return ViewHolder(
             v
         )
@@ -44,10 +41,7 @@ class ChildAdapter(
         holder.card.setBackgroundColor(getRandomColor())
         holder.textView.text = child
         holder.card.setOnClickListener {
-            val i = Intent(mContext, CardsActivityList::class.java)
-            i.putExtra("property",children.property)
-            i.putExtra("param",child)
-            mContext.startActivity(i)
+            adapterOnClick.onClick(children.property,child)
         }
     }
 

@@ -9,17 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testeandroidhearthstone.R
 import com.example.testeandroidhearthstone.data.model.HomeInfo
 import com.example.testeandroidhearthstone.presentation.cardsList.CardsActivityList
-import com.example.testeandroidhearthstone.presentation.home.adapter.ParentAdapter
+import com.example.testeandroidhearthstone.presentation.home.adapter.AdapterOnClick
+import com.example.testeandroidhearthstone.presentation.home.adapter.PropertiesAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
+class HomeActivity : AppCompatActivity(), HomeContract.HomeView , AdapterOnClick{
 
     private val mPresenter: HomeContract.HomePresenter by inject { parametersOf(this) }
 
-    lateinit var recyclerView: RecyclerView
-    private lateinit var mPropertyAdapter: ParentAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var mPropertyAdapter: PropertiesAdapter
     private lateinit var mLinearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,19 +30,27 @@ class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
         mPresenter.getApiInfo()
     }
 
-    override fun setUpPropertyAdapter(resultInfo: List<HomeInfo>) {
+    override fun setUpPropertyAdapter(homeInfoList: List<HomeInfo>) {
         recyclerView = recycler_property
         mLinearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         mPropertyAdapter =
-            ParentAdapter(
+            PropertiesAdapter(
                 this,
-                resultInfo
+                homeInfoList,
+                this
             )
 
         recyclerView.apply {
             layoutManager = mLinearLayoutManager
             adapter = mPropertyAdapter
         }
+    }
+
+    override fun onClick(property: String, param: String) {
+        val i = Intent(this, CardsActivityList::class.java)
+        i.putExtra("property",property)
+        i.putExtra("param",param)
+        startActivity(i)
     }
 
     override fun startShimmer() {

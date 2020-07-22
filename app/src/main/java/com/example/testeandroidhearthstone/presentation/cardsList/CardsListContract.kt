@@ -16,8 +16,5 @@ interface CardsListContract {
 
     interface CardsListPresenter {
         fun getCards()
-        fun getCardsWithId()
-
-        fun insert(cardEntity: Card_Entity)
     }
 }

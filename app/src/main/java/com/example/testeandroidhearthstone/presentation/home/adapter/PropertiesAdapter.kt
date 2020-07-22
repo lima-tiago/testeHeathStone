@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testeandroidhearthstone.R
 import com.example.testeandroidhearthstone.data.model.HomeInfo
-import kotlinx.android.synthetic.main.recycler_child.view.*
+import kotlinx.android.synthetic.main.home_recycler_properties.view.*
 
-class ParentAdapter(
+class PropertiesAdapter(
     private val mContext: Context,
-    private val properties: List<HomeInfo>
+    private val homeInfoList: List<HomeInfo>,
+    private val adapterOnClick: AdapterOnClick
 ) :
-    RecyclerView.Adapter<ParentAdapter.ViewHolder>() {
+    RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
     private val viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(
@@ -23,29 +24,29 @@ class ParentAdapter(
         viewType: Int
     ): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_child, parent, false)
+            .inflate(R.layout.home_recycler_properties, parent, false)
         return ViewHolder(
             v
         )
     }
 
     override fun getItemCount(): Int {
-        return properties.size
+        return homeInfoList.size
     }
 
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int
     ) {
-        holder.textView.text = properties[position].property
-        val childLayoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
-        childLayoutManager.initialPrefetchItemCount = 4
+        holder.textView.text = homeInfoList[position].property
+        val itemsLayoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
+        itemsLayoutManager.initialPrefetchItemCount = 4
         holder.recyclerView.apply {
-            layoutManager = childLayoutManager
+            layoutManager = itemsLayoutManager
             adapter =
-                ChildAdapter(
-                    mContext,
-                    properties[position]
+                ItemsAdapter(
+                    homeInfoList[position],
+                    adapterOnClick
                 )
             setRecycledViewPool(viewPool)
         }

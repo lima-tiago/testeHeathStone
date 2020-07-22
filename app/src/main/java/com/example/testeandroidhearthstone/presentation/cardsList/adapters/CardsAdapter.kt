@@ -79,9 +79,6 @@ class CardsAdapter(private val mContext: Context, private val cards: List<Card_E
             })
             .into(holder.imageView)
 
-        if (holder.imageView.drawable.constantState?.equals(R.drawable.ic_baseline_error_24)!!)
-            Log.d("cardsNotLoaded",card.cardId)
-
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

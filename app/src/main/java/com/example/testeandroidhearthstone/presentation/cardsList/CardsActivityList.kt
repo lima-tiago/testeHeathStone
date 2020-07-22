@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.testeandroidhearthstone.R
 import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.presentation.cardsList.adapters.CardsAdapter
-import com.example.testeandroidhearthstone.presentation.cardsList.adapters.CardsPaginator
 import kotlinx.android.synthetic.main.activity_cards.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -19,7 +18,6 @@ class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
 
     lateinit var recyclerView: RecyclerView
     private lateinit var mAdapter: CardsAdapter
-    private lateinit var mPaginator: CardsPaginator
     private lateinit var mStaggeredGridLayoutManager: StaggeredGridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,10 +58,6 @@ class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
         recyclerView.apply {
             layoutManager = mStaggeredGridLayoutManager
             adapter = mAdapter
-            mPaginator = CardsPaginator(
-                recyclerView,
-                false
-            ) { mPresenter.getCardsWithId() }
         }
     }
 }
