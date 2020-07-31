@@ -54,10 +54,11 @@
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="@id/tvHearthStone"
         app:layout_constraintTop_toBottomOf="@id/tvHearthStone">
 
@@ -66,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="190dp"
-            />
+            tools:listitem="@layout/home_recycler_properties" />
 
     </ScrollView>
 

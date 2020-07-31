@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -15,7 +16,7 @@
             android:layout_height="22dp"
             android:textSize="16sp"
             android:layout_marginStart="39dp"
-            android:text="Coisa Coisada"
+            android:text="Property"
             android:textColor="#707070"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingStart="14dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/home_recycler_item"
             android:layout_marginTop="-6dp"
             android:layout_marginBottom="8dp"
             android:layout_below="@id/parent_recycler_textView"/>
