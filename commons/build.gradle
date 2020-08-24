@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    api "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    api "androidx.core:core-ktx:$rootProject.coreKtxVersion"
+    api "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    api "junit:junit:$rootProject.junitVersion"
+    api "androidx.test.ext:junit:$rootProject.extJunitVersion"
+    api "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    api "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    api "androidx.cardview:cardview:$rootProject.cardViewVersion"
+
+    api "com.google.code.gson:gson:$rootProject.gsonVersion"
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.gsonConverterVersion"
+
+
+    api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideCompilerVersion"
+
+    api "org.koin:koin-android:$rootProject.koinVersion"
+    api "org.koin:koin-test:$rootProject.koinTestVersion"
+
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxJava2AndroidVersion"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxJava2JavaVersion"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitRxJava2adapterVersion"
+
+    api "com.facebook.shimmer:shimmer:$rootProject.facebookShimmerVersion"
+
+}

@@ -6,8 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.model.HomeInfo
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.data.model.HomeInfo
 import com.example.testeandroidhearthstone.presentation.cardsList.CardsActivityList
 import com.example.testeandroidhearthstone.presentation.home.adapter.AdapterOnClick
 import com.example.testeandroidhearthstone.presentation.home.adapter.PropertiesAdapter

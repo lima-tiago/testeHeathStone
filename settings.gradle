@@ -1,2 +1,8 @@
+include ':feature_cards_list'
+include ':feature_home'
+include ':commons'
+include ':network'
+include ':data'
+include ':domain'
 rootProject.name='testeAndroidHearthStone'
 include ':app'

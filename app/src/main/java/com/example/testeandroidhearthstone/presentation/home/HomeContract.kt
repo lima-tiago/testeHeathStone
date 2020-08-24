@@ -1,6 +1,6 @@
 package com.example.testeandroidhearthstone.presentation.home
 
-import com.example.testeandroidhearthstone.data.model.HomeInfo
+import com.example.domain.model.HomeInfo
 
 interface HomeContract {
 

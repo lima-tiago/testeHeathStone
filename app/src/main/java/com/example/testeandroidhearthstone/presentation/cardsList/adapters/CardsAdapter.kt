@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.view.doOnLayout
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,11 +17,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.R.drawable.ic_baseline_error_24
-import com.example.testeandroidhearthstone.domain.entities.Card_Entity
+import com.example.domain.model.Card
 import kotlinx.android.synthetic.main.card_item.view.*
 
-class CardsAdapter(private val mContext: Context, private val cards: List<Card_Entity>) :
+class CardsAdapter(private val mContext: Context, private val cards: List<Card>) :
     RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -50,7 +48,7 @@ class CardsAdapter(private val mContext: Context, private val cards: List<Card_E
             .with(mContext)
             .load(card.img)
             .placeholder(R.drawable.ic_baseline_image_24)
-            .error(ic_baseline_error_24)
+            .error(R.drawable.ic_baseline_error_24)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .dontAnimate()
             .priority(Priority.HIGH)

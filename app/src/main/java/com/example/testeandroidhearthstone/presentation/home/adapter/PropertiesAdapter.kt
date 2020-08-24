@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.data.model.HomeInfo
+import com.example.domain.model.HomeInfo
 import kotlinx.android.synthetic.main.home_recycler_properties.view.*
 
 class PropertiesAdapter(

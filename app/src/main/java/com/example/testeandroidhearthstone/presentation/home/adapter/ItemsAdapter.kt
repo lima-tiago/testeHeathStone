@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.model.HomeInfo
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.data.model.HomeInfo
 import kotlinx.android.synthetic.main.home_recycler_item.view.*
 import java.util.*
 

@@ -1,9 +1,9 @@
 package com.example.testeandroidhearthstone.presentation.home
 
 import android.util.Log
-import com.example.testeandroidhearthstone.data.mapper.map
-import com.example.testeandroidhearthstone.data.model.response.HomeInfoResponse
-import com.example.testeandroidhearthstone.domain.usecases.ILoadHomeInfoUseCase
+import com.example.domain.mapper.map
+import com.example.network.response.HomeInfoResponse
+import com.example.domain.usecases.ILoadHomeInfoUseCase
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

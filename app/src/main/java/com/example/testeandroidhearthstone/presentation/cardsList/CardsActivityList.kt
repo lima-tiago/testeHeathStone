@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.domain.model.Card
 import com.example.testeandroidhearthstone.R
-import com.example.testeandroidhearthstone.domain.entities.Card_Entity
 import com.example.testeandroidhearthstone.presentation.cardsList.adapters.CardsAdapter
 import kotlinx.android.synthetic.main.activity_cards.*
 import org.koin.android.ext.android.inject
@@ -32,11 +32,11 @@ class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
     }
 
     override fun getIncomingExtraProperty(): String {
-        return intent.getStringExtra("property")
+        return intent.getStringExtra("property")?.let { it }.toString()
     }
 
     override fun getIncomingExtraParam(): String {
-        return intent.getStringExtra("param")
+        return intent.getStringExtra("param")?.let { it }.toString()
     }
 
     override fun showToast(message: String) {
@@ -47,7 +47,7 @@ class CardsActivityList : AppCompatActivity(), CardsListContract.CardsListView {
         titleCards.text = param
     }
 
-    override fun setUpAdapter(cards: List<Card_Entity>) {
+    override fun setUpAdapter(cards: List<Card>) {
         recyclerView = recycler_cards
         mStaggeredGridLayoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)

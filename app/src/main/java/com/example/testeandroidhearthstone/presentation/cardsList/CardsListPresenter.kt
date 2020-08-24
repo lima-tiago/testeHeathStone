@@ -1,10 +1,10 @@
 package com.example.testeandroidhearthstone.presentation.cardsList
 
 import android.util.Log
-import com.example.testeandroidhearthstone.data.mapper.map
-import com.example.testeandroidhearthstone.data.model.request.CardsRequest
-import com.example.testeandroidhearthstone.data.model.response.CardsResponse
-import com.example.testeandroidhearthstone.domain.usecases.ILoadCardsUseCase
+import com.example.domain.mapper.map
+import com.example.domain.model.request.CardsRequest
+import com.example.network.response.CardResponse
+import com.example.domain.usecases.ILoadCardsUseCase
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -28,7 +28,7 @@ class CardsListPresenter(
         loadCardsUseCase.execute(params)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : Observer<List<CardsResponse>> {
+            .subscribe(object : Observer<List<CardResponse>> {
                 override fun onComplete() {
                     Log.d(TAG, "Completed")
                 }
@@ -37,7 +37,7 @@ class CardsListPresenter(
                     Log.d(TAG, "Subscribed")
                 }
 
-                override fun onNext(t: List<CardsResponse>) {
+                override fun onNext(t: List<CardResponse>) {
                     println("Hello finished")
 
                     t.map().let {
@@ -49,7 +49,7 @@ class CardsListPresenter(
                 }
 
                 override fun onError(e: Throwable) {
-                    Log.d(TAG, "Error")
+                    Log.d(TAG, "Error " + e)
                 }
             })
     }
